@@ -25,7 +25,7 @@ export default function JobMatches({ resume }) {
   const handleSelectJob = (jobId) => {
     setSelectedJob(jobId);
     setMatchLoading(true);
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/match/${resume.resume_id}/${jobId}`)
+    fetch(`${process.env.VITE_BACKEND_URL}/match/${resume.resume_id}/${jobId}`)
       .then(res => res.json())
       .then(data => {
         setMatchResult(data);
