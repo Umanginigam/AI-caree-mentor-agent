@@ -34,7 +34,7 @@ const [loading, setLoading] = useState(true);
 useEffect(() => {
   if (resume?.resume_id && jobId) {
     setLoading(true);
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/roadmap/ai/${resume.resume_id}/${jobId}`)
+    axios.get(`${process.env.VITE_BACKEND_URL}/roadmap/ai/${resume.resume_id}/${jobId}`)
       .then(res => setRoadmap(res.data))
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
