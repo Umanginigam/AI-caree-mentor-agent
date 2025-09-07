@@ -1,0 +1,58 @@
+# ========================
+# Python / Backend
+# ========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+*.sqlite3
+*.db
+*.egg-info/
+dist/
+build/
+*.log
+.idea/
+.vscode/
+*.pytest_cache/
+.mypy_cache/
+*.coverage
+htmlcov/
+*.pyc
+.venv/
+venv/
+env/
+
+# ========================
+# Node / Frontend
+# ========================
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+.vite/
+.env.local
+.env.*.local
+
+# ========================
+# Docker
+# ========================
+*.pid
+*.log
+docker-compose.yml
+**/Dockerfile.*
+
+# ========================
+# OS Files
+# ========================
+.DS_Store
+Thumbs.db
+
+# ========================
+# Misc
+# ========================
+*.bak
+*.swp
+*.swo
+*.tmp

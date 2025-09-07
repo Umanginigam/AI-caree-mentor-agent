@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+pymongo[srv]
+python-multipart
+pydantic[dotenv]
+sentence-transformers
+transformers
+pdfminer.six
+python-docx
+spacy
+requests
+docx2txt
+google-search-results
+openai
