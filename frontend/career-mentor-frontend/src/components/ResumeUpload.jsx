@@ -8,7 +8,7 @@ export default function ResumeUpload({ setResume }) {
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
   // ✅ Backend URL from environment variable
-  const BACKEND_URL = process.env.VITE_BACKEND_URL;
+ 
 
   const handleUpload = async () => {
     if (!file) return;
@@ -18,7 +18,7 @@ export default function ResumeUpload({ setResume }) {
     formData.append("file", file);
 
     try {
-      const res = await fetch(`${BACKEND_URL}/resume/upload`, {
+      const res = await fetch(`https://career-mentor-app.onrender.com/resume/upload`, {
         method: "POST",
         body: formData,
       });
