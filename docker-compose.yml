@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: career_mentor_backend
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/careermentor
+    depends_on:
+      - mongodb
+    restart: always
+    expose:
+      - "8000"
+
+  mongodb:
+    image: mongo:6.0
+    container_name: career_mentor_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  frontend:
+    build:
+      context: ./frontend/career-mentor-frontend
+      dockerfile: Dockerfile
+    container_name: career_mentor_frontend
+    depends_on:
+      - backend
+    restart: always
+    ports:
+      - "3000:80"  # Nginx serves frontend on port 80 internally
+    environment:
+      - REACT_APP_API_URL=http://backend:8000
+
+volumes:
+  mongo_data:
