@@ -10,7 +10,7 @@ export default function JobMatches({ resume }) {
 
   useEffect(() => {
     // Fetch jobs from the new /jobs/list endpoint
-   fetch(`${process.env.VITE_BACKEND_URL}/jobs/list`)
+   fetch(`https://career-mentor-app.onrender.com/jobs/list`)
       .then(res => res.json())
       .then(data => {
         setJobs(data.jobs || []);
@@ -25,7 +25,7 @@ export default function JobMatches({ resume }) {
   const handleSelectJob = (jobId) => {
     setSelectedJob(jobId);
     setMatchLoading(true);
-    fetch(`${process.env.VITE_BACKEND_URL}/match/${resume.resume_id}/${jobId}`)
+    fetch(`https://career-mentor-app.onrender.com/match/${resume.resume_id}/${jobId}`)
       .then(res => res.json())
       .then(data => {
         setMatchResult(data);
