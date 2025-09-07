@@ -7,25 +7,33 @@ export default function ResumeUpload({ setResume }) {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
+  // ✅ Backend URL from environment variable
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
   const handleUpload = async () => {
     if (!file) return;
     setIsUploading(true);
-    
+
     const formData = new FormData();
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:8000/resume/upload", {
+      const res = await fetch(`${BACKEND_URL}/resume/upload`, {
         method: "POST",
         body: formData,
       });
-      
+
+      if (!res.ok) {
+        throw new Error("Upload failed with status " + res.status);
+      }
+
       const data = await res.json();
       setResume(data); // store resume_id and skills
       setUploadSuccess(true);
       setTimeout(() => setUploadSuccess(false), 3000);
     } catch (error) {
       console.error("Upload failed:", error);
+      alert("Resume upload failed. Please try again.");
     } finally {
       setIsUploading(false);
     }
@@ -56,14 +64,11 @@ export default function ResumeUpload({ setResume }) {
 
   return (
     <div className="relative overflow-hidden">
-      {/* Animated background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 opacity-70"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(120,119,198,0.1),transparent)] animate-pulse"></div>
-      
-      {/* Main container */}
+
       <div className="relative p-8 border-2 border-dashed border-gray-200 rounded-2xl shadow-xl bg-white/80 backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:border-indigo-300 hover:scale-[1.01]">
-        
-        {/* Header */}
+
         <div className="text-center mb-6">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 rounded-full mb-4 shadow-xl relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
@@ -77,7 +82,6 @@ export default function ResumeUpload({ setResume }) {
           </p>
         </div>
 
-        {/* Drop zone */}
         <div
           className={`relative border-2 border-dashed rounded-xl p-10 text-center transition-all duration-300 ${
             isDragOver
@@ -128,7 +132,6 @@ export default function ResumeUpload({ setResume }) {
           />
         </div>
 
-        {/* Upload button */}
         <button
           onClick={handleUpload}
           disabled={!file || isUploading}
@@ -156,7 +159,6 @@ export default function ResumeUpload({ setResume }) {
           )}
         </button>
 
-        {/* Success animation overlay */}
         {uploadSuccess && (
           <div className="absolute inset-0 bg-green-500/10 rounded-2xl flex items-center justify-center backdrop-blur-sm">
             <div className="bg-white rounded-full p-6 shadow-2xl animate-bounce">

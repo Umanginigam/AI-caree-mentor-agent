@@ -5,19 +5,19 @@ export default function NewsFeed() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("http://localhost:8000/news?query=ai+internship&limit=5")
-      .then(res => res.json())
-      .then(data => {
-        // The backend now returns an array directly
-        setNews(Array.isArray(data) ? data : []);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, []);
+ useEffect(() => {
+  fetch("https://career-mentor-app.onrender.com/news?query=ai+internship&limit=5")
+    .then(res => res.json())
+    .then(data => {
+      setNews(Array.isArray(data) ? data : []);
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error(err);
+      setLoading(false);
+    });
+}, []);
+
 
   if (loading) {
     return (

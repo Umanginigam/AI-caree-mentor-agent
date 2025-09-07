@@ -29,14 +29,17 @@ export default function Roadmap({ resume, jobId }) {
       ]
     }
   ];
+const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (resume?.resume_id && jobId) {
-      axios.get(`http://localhost:8000/roadmap/ai/${resume.resume_id}/${jobId}`)
-        .then(res => setRoadmap(res.data))
-        .catch(err => console.error(err));
-    }
-  }, [resume, jobId]);
+useEffect(() => {
+  if (resume?.resume_id && jobId) {
+    setLoading(true);
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/roadmap/ai/${resume.resume_id}/${jobId}`)
+      .then(res => setRoadmap(res.data))
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false));
+  }
+}, [resume, jobId]);
 
   const allSkills = hardcodedSkills.flatMap(c => c.skills.map(s => ({ ...s, category: c.category })));
 

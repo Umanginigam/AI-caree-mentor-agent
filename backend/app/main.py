@@ -9,7 +9,9 @@ app.include_router(jobs.router)
 app.include_router(match.router)
 app.include_router(roadmap.router)
 app.include_router(news.router)
-
+origins = [
+    "https://career-mentor-frontend.onrender.com",  # your frontend Render URL
+]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Or specify ["http://localhost:5173"]

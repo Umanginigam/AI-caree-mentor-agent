@@ -14,7 +14,7 @@ export default function SkillRoadmapPage({ resume, jobId }) {
         const payload = { skill };
         if (resume?.resume_id) payload.resume_id = resume.resume_id;
         if (jobId) payload.job_id = jobId;
-        const resp = await fetch('http://localhost:8000/roadmap/skill', {
+        const resp = await fetch(`${process.env.REACT_APP_BACKEND_URL}/roadmap/skill`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

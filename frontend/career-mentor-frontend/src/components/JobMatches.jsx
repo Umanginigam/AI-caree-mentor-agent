@@ -10,7 +10,7 @@ export default function JobMatches({ resume }) {
 
   useEffect(() => {
     // Fetch jobs from the new /jobs/list endpoint
-    fetch("http://localhost:8000/jobs/list")
+   fetch(`${process.env.REACT_APP_BACKEND_URL}/jobs/list`)
       .then(res => res.json())
       .then(data => {
         setJobs(data.jobs || []);
@@ -25,7 +25,7 @@ export default function JobMatches({ resume }) {
   const handleSelectJob = (jobId) => {
     setSelectedJob(jobId);
     setMatchLoading(true);
-    fetch(`http://localhost:8000/match/${resume.resume_id}/${jobId}`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/match/${resume.resume_id}/${jobId}`)
       .then(res => res.json())
       .then(data => {
         setMatchResult(data);
