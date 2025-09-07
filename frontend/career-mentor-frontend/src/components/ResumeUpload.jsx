@@ -8,7 +8,7 @@ export default function ResumeUpload({ setResume }) {
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
   // ✅ Backend URL from environment variable
-  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+  const BACKEND_URL = process.env.VITE_BACKEND_URL;
 
   const handleUpload = async () => {
     if (!file) return;
