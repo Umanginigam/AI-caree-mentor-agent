@@ -10,7 +10,7 @@ export default function JobMatches({ resume }) {
 
   useEffect(() => {
     // Fetch jobs from the new /jobs/list endpoint
-   fetch(`${process.env.REACT_APP_BACKEND_URL}/jobs/list`)
+   fetch(`${process.env.VITE_BACKEND_URL}/jobs/list`)
       .then(res => res.json())
       .then(data => {
         setJobs(data.jobs || []);
