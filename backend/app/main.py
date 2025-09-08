@@ -10,7 +10,7 @@ app.include_router(match.router)
 app.include_router(roadmap.router)
 app.include_router(news.router)
 origins = [
-    "https://career-mentor-frontend.onrender.com",  # your frontend Render URL
+    "https://ai-caree-mentor-frontend.onrender.com",  # your frontend Render URL
 ]
 app.add_middleware(
     CORSMiddleware,
