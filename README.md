@@ -78,15 +78,22 @@ cd frontend
 npm install
 npm run dev
 ```
-🌍 Deployment
+# 🌍 Deployment
+
 Backend → Deploy on Render with environment variables set.
+
 Frontend → Deploy React app on Render/Netlify/Vercel.
+
 Database → Use MongoDB Atlas (don’t forget to whitelist Render IPs).
 
-📊 Experimental Results
+# 📊 Experimental Results
+
 Top-1 Job Matching Accuracy: 68.2% (vs 48.6% baseline keyword match)
+
 Skill Gap Analysis: Enabled actionable recommendations for missing skills.
+
 User Feedback: Roadmaps rated helpful in 78% of test cases.
 
-🤝 Contributing
+# 🤝 Contributing
+
 Pull requests are welcome! Please open an issue first for feature discussions.
